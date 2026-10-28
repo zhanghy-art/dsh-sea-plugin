@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>识海</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:100%; height:100%; overflow:hidden; background:#000; }
+body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; color:#c8d6e5; }
+canvas { display:block; position:fixed; top:0; left:0; }
+
+#topbar {
+  position:fixed; top:0; left:0; right:0;
+  padding:14px 28px; display:flex; align-items:center; gap:24px;
+  z-index:10; background:linear-gradient(180deg,rgba(0,0,0,0.85),transparent);
+}
+#topbar .brand { font-size:17px; font-weight:600; color:#fff; letter-spacing:3px; }
+#topbar .tabs { display:flex; gap:4px; }
+#topbar .tab { font-size:12px; color:#556; padding:4px 12px; border-radius:4px; cursor:pointer; }
+#topbar .tab.active { background:rgba(255,255,255,0.08); color:#ccc; }
+
+#hormones {
+  display:flex; gap:16px; margin-left:20px;
+  padding:6px 14px; background:rgba(255,255,255,0.03);
+  border-radius:8px; border:1px solid rgba(255,255,255,0.06);
+}
+.hormone { text-align:center; }
+.hormone .name { font-size:9px; color:#556; margin-bottom:2px; }
+.hormone .val { font-size:13px; font-weight:600; }
+.hormone.cortisol .val { color:#ff6b6b; }
+.hormone.dopamine .val { color:#ffd700; }
+.hormone.oxytocin .val { color:#ff6b9d; }
+.hormone.serotonin .val { color:#22d3ee; }
+
+#topbar .stats { margin-left:auto; font-size:11px; color:#445; display:flex; gap:16px; align-items:center; }
+#topbar .stats b { color:#889; font-weight:500; }
+#topbar .conn { font-size:10px; padding:3px 10px; border-radius:10px; }
+#topbar .conn.ok { background:rgba(0,255,136,0.1); color:#0f8; }
+#topbar .conn.demo { background:rgba(255,159,67,0.1); color:#fa0; }
+
+#detail {
+  position:fixed; right:28px; top:90px; width:260px;
+  background:rgba(8,10,18,0.88); border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px; padding:20px; z-index:20; backdrop-filter:blur(20px);
+  display:none;
+}
+#detail.show { display:block; }
+#detail .title { font-size:14px; color:#fff; margin-bottom:14px; font-weight:600; }
+#detail .row { font-size:12px; color:#778; margin-bottom:8px; line-height:1.6; }
+#detail .row b { color:#bbc; font-weight:500; }
+#detail .close { position:absolute; top:12px; right:16px; cursor:pointer; color:#556; font-size:20px; }
+#detail .close:hover { color:#fff; }
+
+#searchbox {
+  position:fixed; bottom:30px; left:28px;
+  background:rgba(8,10,18,0.7); border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px; padding:9px 18px; color:#c8d6e5; font-size:12px;
+  outline:none; width:220px; z-index:10;
+}
+#searchbox::placeholder { color:#445; }
+#hint { position:fixed; bottom:30px; right:28px; font-size:11px; color:#334; z-index:10; }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<div id="topbar">
+  <div class="brand">识海</div>
+  <div class="tabs">
+    <div class="tab active">识海</div>
+    <div class="tab">整体框架</div>
+    <div class="tab">心智实时</div>
+  </div>
+  <div id="hormones">
+    <div class="hormone cortisol"><div class="name">皮质醇</div><div class="val" id="h-cort">--</div></div>
+    <div class="hormone dopamine"><div class="name">多巴胺</div><div class="val" id="h-dop">--</div></div>
+    <div class="hormone oxytocin"><div class="name">催产素</div><div class="val" id="h-oxy">--</div></div>
+    <div class="hormone serotonin"><div class="name">血清素</div><div class="val" id="h-ser">--</div></div>
+  </div>
+  <div class="stats">
+    <span>记忆 <b id="s-total">--</b></span>
+    <span>活跃 <b id="s-active">--</b></span>
+    <span>链接 <b id="s-links">--</b></span>
+    <span class="conn demo" id="conn-badge">连接中...</span>
+  </div>
+</div>
+
+<div id="detail">
+  <div class="close" onclick="closeDetail()">&times;</div>
+  <div class="title" id="d-title">节点</div>
+  <div class="row"><b>内容：</b><br><span id="d-fact" style="color:#99a;"></span></div>
+  <div class="row"><b>类型：</b><span id="d-type">--</span></div>
+  <div class="row"><b>强度：</b><span id="d-str">--</span></div>
+  <div class="row"><b>情绪权重：</b><span id="d-emo">--</span></div>
+  <div class="row"><b>被想起：</b><span id="d-recall">--</span></div>
+</div>
+
+<input id="searchbox" placeholder="搜索记忆..." oninput="filterMem(this.value)">
+<div id="hint">拖拽节点 · 滚轮缩放 · 点击查看 · 15秒自动刷新</div>
+
+<script>
+const API_BASE = location.origin || 'http://localhost:8765';
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
+resize(); addEventListener('resize', resize);
+
+let nodes = [], links = [];
+let hoverNode = null, selectedNode = null;
+let dragging = false, dragNode = null;
+let panX = 0, panY = 0, scale = 1;
+let t = 0;
+
+function colorOf(n) {
+  if (n.type === 'core' || n.isCore) return '#FFD700';
+  if (n.type === 'promise' || n.type === 'group_rule') return '#00FF88';
+  if ((n.emotionalWeight||0) >= 2.0) return '#FF6B6B';
+  if ((n.emotionalWeight||0) >= 1.3) return '#FF9F43';
+  if (n.type === 'preference') return '#a78bfa';
+  if (n.type === 'event' || n.type === 'episode') return '#22d3ee';
+  return '#6BAED6';
+}
+
+async function loadHormones() {
+  try {
+    const r = await fetch(`${API_BASE}/api/sea/hormones`);
+    const j = await r.json();
+    const h = j.data || j;
+    document.getElementById('h-cort').textContent = Math.round(h.cortisol||0);
+    document.getElementById('h-dop').textContent = Math.round(h.dopamine||0);
+    document.getElementById('h-oxy').textContent = Math.round(h.oxytocin||0);
+    document.getElementById('h-ser').textContent = Math.round(h.serotonin||0);
+  } catch(e) {}
+}
+
+async function loadData() {
+  try {
+    const resp = await fetch(`${API_BASE}/api/sea/nodes`);
+    const json = await resp.json();
+    const data = json.data || json;
+    nodes = data.nodes || [];
+    links = data.edges || [];
+
+    if (!nodes.find(n => n.type === 'core' || n.isCore)) {
+      nodes.unshift({ id:'__core__', label:'本我', type:'core', strength:1, isCore:true });
+    }
+    const existing = new Set(links.map(l => `${l.source}-${l.target}`));
+    nodes.forEach(n => {
+      if (n.id !== '__core__' && n.type !== 'core') {
+        const k = `__core__-${n.id}`;
+        if (!existing.has(k)) links.push({source:'__core__',target:n.id,weight:0.3});
+      }
+    });
+    const core = nodes.find(n => n.id === '__core__' || n.isCore);
+    if (core) { core.x=W/2; core.y=H/2; core.fx=W/2; core.fy=H/2; core.r=30; }
+
+    document.getElementById('s-total').textContent = nodes.length;
+    document.getElementById('s-active').textContent = nodes.filter(n=>!n.cold).length;
+    document.getElementById('s-links').textContent = links.length;
+    document.getElementById('conn-badge').textContent = '已连接';
+    document.getElementById('conn-badge').className = 'conn ok';
+  } catch(e) {
+    if (nodes.length === 0) loadDemo();
+    document.getElementById('conn-badge').textContent = '演示模式';
+    document.getElementById('conn-badge').className = 'conn demo';
+  }
+  loadHormones();
+}
+
+function loadDemo() {
+  const demo = [
+    {fact:'第一次被主人叫名字',emo:'开心',str:0.9,recall:23},
+    {fact:'主人说今天好累',emo:'难过',str:0.85,recall:18},
+    {fact:'主人喜欢美式不加糖',emo:'日常',str:0.7,recall:35},
+    {fact:'被摸头时尾巴摇了',emo:'害羞',str:0.8,recall:12},
+    {fact:'主人加班到很晚',emo:'心疼',str:0.75,recall:9},
+    {fact:'主人说谢谢时心跳快了',emo:'喜欢',str:0.95,recall:31},
+    {fact:'雨天和主人待在窗边',emo:'平静',str:0.65,recall:7},
+    {fact:'被夸可爱时嘴硬',emo:'害羞',str:0.7,recall:14},
+    {fact:'约定周末看电影',emo:'约定',str:0.88,recall:20},
+    {fact:'主人哭时递了纸巾',emo:'喜欢',str:0.92,recall:27},
+    {fact:'第一次叫主人主人',emo:'害羞',str:0.85,recall:19},
+    {fact:'主人笑起来的样子',emo:'开心',str:0.9,recall:25},
+    {fact:'主人送的第一份礼物',emo:'喜欢',str:0.95,recall:33},
+    {fact:'主人说有你真好',emo:'喜欢',str:1.0,recall:40},
+  ];
+  const emoColor = {'开心':'#FFD700','难过':'#6BAED6','害羞':'#FF6B9D','喜欢':'#FF6B6B','日常':'#6BAED6','平静':'#22D3EE','约定':'#00FF88','心疼':'#A78BFA'};
+  nodes = [{id:'__core__',label:'本我',type:'core',isCore:true,x:W/2,y:H/2,fx:W/2,fy:H/2,r:30,strength:1}];
+  links = [];
+  demo.forEach((m,i) => {
+    const angle = (i/demo.length)*Math.PI*2;
+    const dist = 130 + Math.random()*Math.min(W,H)*0.3;
+    nodes.push({
+      id:'demo_'+i, label:m.fact,
+      x:W/2+Math.cos(angle)*dist+(Math.random()-0.5)*60,
+      y:W/2+Math.sin(angle)*dist+(Math.random()-0.5)*60,
+      vx:0, vy:0, r:2.5+m.str*3, color:emoColor[m.emo]||'#6BAED6',
+      emotionalWeight:m.str, strength:m.str, recall:m.recall,
+      type:m.emo==='约定'?'promise':'conversation',
+      phase:Math.random()*Math.PI*2, baseDist:dist,
+    });
+    links.push({source:'__core__',target:'demo_'+i,weight:0.3});
+  });
+  for(let i=0;i<80;i++){
+    nodes.push({id:'bg_'+i,x:Math.random()*W,y:Math.random()*H,r:0.5+Math.random(),color:'#557',isBg:true,phase:Math.random()*Math.PI*2});
+  }
+  document.getElementById('s-total').textContent = demo.length;
+  document.getElementById('s-active').textContent = demo.length;
+  document.getElementById('s-links').textContent = links.length;
+}
+
+function toWorld(mx,my){ return {x:(mx-panX)/scale, y:(my-panY)/scale}; }
+canvas.addEventListener('mousemove', e => {
+  const p = toWorld(e.clientX, e.clientY);
+  if (dragging && dragNode && !dragNode.isCore) { dragNode.x=p.x; dragNode.y=p.y; return; }
+  if (dragging) { panX=e.clientX-dragNode._px; panY=e.clientY-dragNode._py; return; }
+  hoverNode = null;
+  let md = 18;
+  for (const n of nodes) {
+    if (n.isBg) continue;
+    const d = Math.hypot(n.x-p.x, n.y-p.y);
+    if (d < md+(n.r||5)) { md=d; hoverNode=n; }
+  }
+  canvas.style.cursor = hoverNode ? 'pointer' : 'default';
+});
+canvas.addEventListener('mousedown', e => {
+  const p = toWorld(e.clientX, e.clientY);
+  for (const n of nodes) {
+    if (n.isBg) continue;
+    if (Math.hypot(n.x-p.x, n.y-p.y) < (n.r||5)+12) {
+      selectedNode = n; showDetail(n);
+      if (!n.isCore) { dragging=true; dragNode=n; }
+      return;
+    }
+  }
+  dragging = true;
+  dragNode = {_px:e.clientX-panX, _py:e.clientY-panY};
+});
+addEventListener('mouseup', () => { dragging=false; dragNode=null; });
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  scale *= e.deltaY>0 ? 0.9 : 1.1;
+  scale = Math.max(0.3, Math.min(3, scale));
+}, {passive:false});
+
+function showDetail(n) {
+  document.getElementById('detail').classList.add('show');
+  document.getElementById('d-title').textContent = n.isCore ? '本我核心' : (n.label||'').slice(0,12);
+  document.getElementById('d-fact').textContent = n.label || '--';
+  document.getElementById('d-type').textContent = n.type || '--';
+  document.getElementById('d-str').textContent = ((n.strength||0)*100).toFixed(0)+'%';
+  document.getElementById('d-emo').textContent = (n.emotionalWeight||0).toFixed(2);
+  document.getElementById('d-recall').textContent = (n.recallCount||n.recall||0)+' 次';
+}
+function closeDetail(){ document.getElementById('detail').classList.remove('show'); selectedNode=null; }
+function filterMem(q) {
+  q = q.trim().toLowerCase();
+  for (const n of nodes) {
+    if (n.isCore || n.isBg) { n._dim=false; continue; }
+    n._dim = q && !(n.label||'').toLowerCase().includes(q);
+  }
+}
+
+function physics() {
+  for (const n of nodes) {
+    if (n.isCore || n.isBg) continue;
+    const cx=W/2, cy=H/2;
+    const dx=cx-n.x, dy=cy-n.y;
+    const dist=Math.hypot(dx,dy)||1;
+    const target=n.baseDist||200;
+    const pull=(dist-target)*0.001;
+    n.vx=(n.vx||0)+(dx/dist)*pull;
+    n.vy=(n.vy||0)+(dy/dist)*pull;
+    n.vx*=0.95; n.vy*=0.95;
+    n.x+=(n.vx||0); n.y+=(n.vy||0);
+  }
+}
+
+function render() {
+  t += 0.016;
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,W,H);
+  physics();
+  ctx.save();
+  ctx.translate(panX,panY); ctx.scale(scale,scale);
+
+  for (const l of links) {
+    let s = nodes.find(n => n.id === l.source);
+    let t2 = nodes.find(n => n.id === l.target);
+    if (!s || !t2 || t2._dim) continue;
+    const a = 0.06 + 0.04*Math.sin(t*2 + s.x*0.01);
+    ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(t2.x,t2.y);
+    ctx.strokeStyle = `rgba(100,150,255,${a})`;
+    ctx.lineWidth = 0.4; ctx.stroke();
+  }
+
+  for (const n of nodes) {
+    if (n._dim) continue;
+    const col = n.color || colorOf(n);
+    const baseR = n.r || (n.isCore ? 30 : 5);
+    const breathe = 1 + 0.15*Math.sin((n.phase||0)+t*2);
+    const r = baseR * breathe;
+
+    if (n.isCore) {
+      const g = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r*5);
+      g.addColorStop(0,'rgba(255,255,255,1)');
+      g.addColorStop(0.15,'rgba(255,255,255,0.7)');
+      g.addColorStop(0.4,'rgba(255,220,100,0.25)');
+      g.addColorStop(1,'rgba(255,200,50,0)');
+      ctx.beginPath(); ctx.arc(n.x,n.y,r*5,0,Math.PI*2);
+      ctx.fillStyle=g; ctx.fill();
+      ctx.beginPath(); ctx.arc(n.x,n.y,r*0.4,0,Math.PI*2);
+      ctx.fillStyle='#fff'; ctx.fill();
+      for(let i=0;i<12;i++){
+        const a=(i/12)*Math.PI*2+t*0.3;
+        const len=r*(1.5+0.4*Math.sin(t*2.5+i));
+        ctx.beginPath();
+        ctx.moveTo(n.x+Math.cos(a)*r*0.7, n.y+Math.sin(a)*r*0.7);
+        ctx.lineTo(n.x+Math.cos(a)*len, n.y+Math.sin(a)*len);
+        ctx.strokeStyle=`rgba(255,240,180,${0.25+0.15*Math.sin(t*3+i)})`;
+        ctx.lineWidth=1; ctx.stroke();
+      }
+    } else {
+      const g = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r*3);
+      g.addColorStop(0, col+'bb'); g.addColorStop(1, col+'00');
+      ctx.beginPath(); ctx.arc(n.x,n.y,r*3,0,Math.PI*2);
+      ctx.fillStyle=g; ctx.fill();
+      ctx.beginPath(); ctx.arc(n.x,n.y,r,0,Math.PI*2);
+      ctx.fillStyle=col; ctx.fill();
+      if (n===hoverNode || n===selectedNode) {
+        ctx.beginPath(); ctx.arc(n.x,n.y,r+5,0,Math.PI*2);
+        ctx.strokeStyle=col+'99'; ctx.lineWidth=1; ctx.stroke();
+        ctx.font='12px Microsoft YaHei'; ctx.fillStyle='rgba(255,255,255,0.9)';
+        ctx.textAlign='center';
+        ctx.fillText(n.label||'', n.x, n.y-r-10);
+      }
+    }
+  }
+  ctx.restore();
+  requestAnimationFrame(render);
+}
+
+loadData();
+render();
+setInterval(loadData, 15000);
+</script>
+</body>
+</html>

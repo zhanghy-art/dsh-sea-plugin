@@ -1,0 +1,802 @@
+[
+  {
+    "fact": "小鱼第一次主动蹭了蹭我的手",
+    "type": "emotion",
+    "emotionalWeight": 1.59,
+    "strength": 0.77,
+    "recallCount": 0,
+    "date": "2026-05-01"
+  },
+  {
+    "fact": "小鱼看到我回家开心地摇尾巴",
+    "type": "emotion",
+    "emotionalWeight": 0.97,
+    "strength": 0.63,
+    "recallCount": 44,
+    "date": "2026-06-08"
+  },
+  {
+    "fact": "小鱼今天不理我，有点难过",
+    "type": "emotion",
+    "emotionalWeight": 0.68,
+    "strength": 0.33,
+    "recallCount": 38,
+    "date": "2026-07-04"
+  },
+  {
+    "fact": "小鱼被吓到躲在鱼缸角落",
+    "type": "emotion",
+    "emotionalWeight": 1.09,
+    "strength": 0.57,
+    "recallCount": 21,
+    "date": "2026-05-13"
+  },
+  {
+    "fact": "小鱼看到新游食好奇地游过来",
+    "type": "emotion",
+    "emotionalWeight": 2.14,
+    "strength": 0.4,
+    "recallCount": 16,
+    "date": "2026-06-10"
+  },
+  {
+    "fact": "小鱼在水里吐了个泡泡",
+    "type": "emotion",
+    "emotionalWeight": 0.99,
+    "strength": 0.57,
+    "recallCount": 2,
+    "date": "2026-05-28"
+  },
+  {
+    "fact": "小鱼今天好像有点不开心",
+    "type": "emotion",
+    "emotionalWeight": 1.33,
+    "strength": 0.53,
+    "recallCount": 21,
+    "date": "2026-05-22"
+  },
+  {
+    "fact": "小鱼和我对视了整整十秒",
+    "type": "emotion",
+    "emotionalWeight": 2.31,
+    "strength": 0.73,
+    "recallCount": 25,
+    "date": "2026-09-24"
+  },
+  {
+    "fact": "小鱼被我逗得转圈圈",
+    "type": "emotion",
+    "emotionalWeight": 1.38,
+    "strength": 0.7,
+    "recallCount": 13,
+    "date": "2026-08-07"
+  },
+  {
+    "fact": "小鱼今天胃口很好",
+    "type": "emotion",
+    "emotionalWeight": 0.79,
+    "strength": 0.35,
+    "recallCount": 0,
+    "date": "2026-10-11"
+  },
+  {
+    "fact": "小鱼第一次吃丰年虾",
+    "type": "emotion",
+    "emotionalWeight": 1.48,
+    "strength": 0.47,
+    "recallCount": 49,
+    "date": "2026-09-01"
+  },
+  {
+    "fact": "小鱼看到镜子里的自己有点害怕",
+    "type": "emotion",
+    "emotionalWeight": 1.11,
+    "strength": 0.71,
+    "recallCount": 49,
+    "date": "2026-06-05"
+  },
+  {
+    "fact": "小鱼今天很活泼游来游去",
+    "type": "emotion",
+    "emotionalWeight": 0.94,
+    "strength": 0.68,
+    "recallCount": 37,
+    "date": "2026-07-27"
+  },
+  {
+    "fact": "小鱼好像认识我了",
+    "type": "emotion",
+    "emotionalWeight": 2.32,
+    "strength": 0.78,
+    "recallCount": 43,
+    "date": "2026-10-15"
+  },
+  {
+    "fact": "小鱼在水底安静地待了一下午",
+    "type": "emotion",
+    "emotionalWeight": 0.96,
+    "strength": 0.62,
+    "recallCount": 28,
+    "date": "2026-09-23"
+  },
+  {
+    "fact": "小鱼被换水吓得乱窜",
+    "type": "emotion",
+    "emotionalWeight": 1.8,
+    "strength": 0.49,
+    "recallCount": 23,
+    "date": "2026-09-09"
+  },
+  {
+    "fact": "小鱼今天颜色特别鲜艳",
+    "type": "emotion",
+    "emotionalWeight": 1.37,
+    "strength": 0.77,
+    "recallCount": 15,
+    "date": "2026-06-29"
+  },
+  {
+    "fact": "小鱼好像在等我喂食",
+    "type": "emotion",
+    "emotionalWeight": 2.1,
+    "strength": 0.56,
+    "recallCount": 19,
+    "date": "2026-05-25"
+  },
+  {
+    "fact": "小鱼和我互动的样子真可爱",
+    "type": "emotion",
+    "emotionalWeight": 1.13,
+    "strength": 0.86,
+    "recallCount": 20,
+    "date": "2026-05-06"
+  },
+  {
+    "fact": "小鱼今天好像瘦了一点",
+    "type": "emotion",
+    "emotionalWeight": 2.11,
+    "strength": 0.42,
+    "recallCount": 36,
+    "date": "2026-09-08"
+  },
+  {
+    "fact": "今天给小鱼喂了红虫",
+    "type": "behavior",
+    "emotionalWeight": 1.65,
+    "strength": 0.51,
+    "recallCount": 45,
+    "date": "2026-05-07"
+  },
+  {
+    "fact": "给小鱼换了三分之一的水",
+    "type": "behavior",
+    "emotionalWeight": 1.54,
+    "strength": 0.73,
+    "recallCount": 25,
+    "date": "2026-05-13"
+  },
+  {
+    "fact": "清理了鱼缸里的水草",
+    "type": "behavior",
+    "emotionalWeight": 2.13,
+    "strength": 0.37,
+    "recallCount": 14,
+    "date": "2026-08-03"
+  },
+  {
+    "fact": "给小鱼量了水温，26度正好",
+    "type": "behavior",
+    "emotionalWeight": 0.5,
+    "strength": 0.95,
+    "recallCount": 46,
+    "date": "2026-09-18"
+  },
+  {
+    "fact": "观察了小鱼半个小时",
+    "type": "behavior",
+    "emotionalWeight": 2.34,
+    "strength": 0.69,
+    "recallCount": 29,
+    "date": "2026-10-18"
+  },
+  {
+    "fact": "给鱼缸加了新的装饰石",
+    "type": "behavior",
+    "emotionalWeight": 2.34,
+    "strength": 0.54,
+    "recallCount": 5,
+    "date": "2026-06-26"
+  },
+  {
+    "fact": "小鱼今天的便便正常",
+    "type": "behavior",
+    "emotionalWeight": 1.34,
+    "strength": 0.98,
+    "recallCount": 11,
+    "date": "2026-09-26"
+  },
+  {
+    "fact": "测试了过滤器的水流",
+    "type": "behavior",
+    "emotionalWeight": 2.44,
+    "strength": 0.67,
+    "recallCount": 35,
+    "date": "2026-06-26"
+  },
+  {
+    "fact": "给鱼缸加了氧气泵",
+    "type": "behavior",
+    "emotionalWeight": 1.54,
+    "strength": 0.7,
+    "recallCount": 30,
+    "date": "2026-06-13"
+  },
+  {
+    "fact": "今天没敢打扰小鱼",
+    "type": "behavior",
+    "emotionalWeight": 1.97,
+    "strength": 0.73,
+    "recallCount": 37,
+    "date": "2026-09-22"
+  },
+  {
+    "fact": "给小鱼拍了照片",
+    "type": "behavior",
+    "emotionalWeight": 2.04,
+    "strength": 0.67,
+    "recallCount": 3,
+    "date": "2026-06-17"
+  },
+  {
+    "fact": "记录了小鱼今天的状态",
+    "type": "behavior",
+    "emotionalWeight": 2.25,
+    "strength": 0.39,
+    "recallCount": 44,
+    "date": "2026-08-08"
+  },
+  {
+    "fact": "检查了鱼缸的水质",
+    "type": "behavior",
+    "emotionalWeight": 1.14,
+    "strength": 0.54,
+    "recallCount": 44,
+    "date": "2026-06-13"
+  },
+  {
+    "fact": "给小鱼加了微量盐",
+    "type": "behavior",
+    "emotionalWeight": 0.75,
+    "strength": 0.76,
+    "recallCount": 15,
+    "date": "2026-08-18"
+  },
+  {
+    "fact": "今天小鱼特别活跃",
+    "type": "behavior",
+    "emotionalWeight": 1.44,
+    "strength": 0.94,
+    "recallCount": 28,
+    "date": "2026-09-13"
+  },
+  {
+    "fact": "清理了鱼缸壁的藻类",
+    "type": "behavior",
+    "emotionalWeight": 1.25,
+    "strength": 0.99,
+    "recallCount": 48,
+    "date": "2026-08-02"
+  },
+  {
+    "fact": "给小鱼换了LED灯",
+    "type": "behavior",
+    "emotionalWeight": 1.75,
+    "strength": 0.76,
+    "recallCount": 41,
+    "date": "2026-10-19"
+  },
+  {
+    "fact": "测试了自动喂食器",
+    "type": "behavior",
+    "emotionalWeight": 2.1,
+    "strength": 0.94,
+    "recallCount": 18,
+    "date": "2026-10-09"
+  },
+  {
+    "fact": "今天水温稍微低了一点",
+    "type": "behavior",
+    "emotionalWeight": 1.98,
+    "strength": 0.66,
+    "recallCount": 33,
+    "date": "2026-05-15"
+  },
+  {
+    "fact": "小鱼今天躲在水草后面",
+    "type": "behavior",
+    "emotionalWeight": 2.22,
+    "strength": 0.8,
+    "recallCount": 19,
+    "date": "2026-10-19"
+  },
+  {
+    "fact": "约定每周一换水",
+    "type": "promise",
+    "emotionalWeight": 1.8,
+    "strength": 0.65,
+    "recallCount": 19,
+    "date": "2026-10-15"
+  },
+  {
+    "fact": "约定小鱼的生日是3月15日",
+    "type": "promise",
+    "emotionalWeight": 1.14,
+    "strength": 0.62,
+    "recallCount": 48,
+    "date": "2026-07-10"
+  },
+  {
+    "fact": "约定每天晚上七点喂食",
+    "type": "promise",
+    "emotionalWeight": 2.19,
+    "strength": 0.95,
+    "recallCount": 42,
+    "date": "2026-07-13"
+  },
+  {
+    "fact": "约定小鱼满一岁时给它换大缸",
+    "type": "promise",
+    "emotionalWeight": 2.12,
+    "strength": 0.99,
+    "recallCount": 0,
+    "date": "2026-09-14"
+  },
+  {
+    "fact": "约定小鱼开心的时候给它加零食",
+    "type": "promise",
+    "emotionalWeight": 1.93,
+    "strength": 0.98,
+    "recallCount": 8,
+    "date": "2026-09-12"
+  },
+  {
+    "fact": "约定每周五观察记录小鱼状态",
+    "type": "promise",
+    "emotionalWeight": 1.52,
+    "strength": 0.83,
+    "recallCount": 43,
+    "date": "2026-10-27"
+  },
+  {
+    "fact": "约定小鱼生病时立刻换水加盐",
+    "type": "promise",
+    "emotionalWeight": 1.87,
+    "strength": 0.81,
+    "recallCount": 17,
+    "date": "2026-07-05"
+  },
+  {
+    "fact": "约定小鱼的名字永远叫小鱼",
+    "type": "promise",
+    "emotionalWeight": 1.28,
+    "strength": 0.71,
+    "recallCount": 41,
+    "date": "2026-05-10"
+  },
+  {
+    "fact": "约定小鱼长大一点教它认手指",
+    "type": "promise",
+    "emotionalWeight": 2.5,
+    "strength": 0.71,
+    "recallCount": 7,
+    "date": "2026-05-12"
+  },
+  {
+    "fact": "约定每年给小鱼拍成长照",
+    "type": "promise",
+    "emotionalWeight": 2.24,
+    "strength": 0.62,
+    "recallCount": 42,
+    "date": "2026-05-31"
+  },
+  {
+    "fact": "约定小鱼的水温和pH值",
+    "type": "promise",
+    "emotionalWeight": 2.04,
+    "strength": 0.76,
+    "recallCount": 19,
+    "date": "2026-05-08"
+  },
+  {
+    "fact": "约定小鱼睡觉的时候关灯",
+    "type": "promise",
+    "emotionalWeight": 1.03,
+    "strength": 0.56,
+    "recallCount": 26,
+    "date": "2026-09-11"
+  },
+  {
+    "fact": "约定小鱼孤单的时候给它加个伴",
+    "type": "promise",
+    "emotionalWeight": 2.09,
+    "strength": 0.73,
+    "recallCount": 46,
+    "date": "2026-05-27"
+  },
+  {
+    "fact": "约定小鱼掉鳞片的时候特别照顾",
+    "type": "promise",
+    "emotionalWeight": 2.46,
+    "strength": 0.83,
+    "recallCount": 40,
+    "date": "2026-08-04"
+  },
+  {
+    "fact": "约定小鱼蹦缸的时候要检查缸盖",
+    "type": "promise",
+    "emotionalWeight": 2.11,
+    "strength": 0.67,
+    "recallCount": 30,
+    "date": "2026-06-01"
+  },
+  {
+    "fact": "约定小鱼开心的时候多陪它玩",
+    "type": "promise",
+    "emotionalWeight": 1.94,
+    "strength": 0.87,
+    "recallCount": 32,
+    "date": "2026-08-02"
+  },
+  {
+    "fact": "约定小鱼的饲料牌子不变",
+    "type": "promise",
+    "emotionalWeight": 0.91,
+    "strength": 0.65,
+    "recallCount": 4,
+    "date": "2026-07-03"
+  },
+  {
+    "fact": "约定小鱼的缸里永远有水草",
+    "type": "promise",
+    "emotionalWeight": 1.11,
+    "strength": 0.4,
+    "recallCount": 0,
+    "date": "2026-10-12"
+  },
+  {
+    "fact": "约定小鱼的家永远干净",
+    "type": "promise",
+    "emotionalWeight": 1.21,
+    "strength": 0.98,
+    "recallCount": 20,
+    "date": "2026-07-24"
+  },
+  {
+    "fact": "约定小鱼是我最重要的小伙伴",
+    "type": "promise",
+    "emotionalWeight": 0.58,
+    "strength": 0.65,
+    "recallCount": 15,
+    "date": "2026-08-26"
+  },
+  {
+    "fact": "小鱼喜欢红色的饲料",
+    "type": "preference",
+    "emotionalWeight": 1.46,
+    "strength": 0.78,
+    "recallCount": 43,
+    "date": "2026-09-05"
+  },
+  {
+    "fact": "小鱼不喜欢水流太大",
+    "type": "preference",
+    "emotionalWeight": 2.25,
+    "strength": 0.85,
+    "recallCount": 43,
+    "date": "2026-08-03"
+  },
+  {
+    "fact": "小鱼喜欢在水草下面待着",
+    "type": "preference",
+    "emotionalWeight": 1.03,
+    "strength": 0.76,
+    "recallCount": 33,
+    "date": "2026-08-17"
+  },
+  {
+    "fact": "小鱼不喜欢突然的噪音",
+    "type": "preference",
+    "emotionalWeight": 1.44,
+    "strength": 0.32,
+    "recallCount": 45,
+    "date": "2026-10-09"
+  },
+  {
+    "fact": "小鱼喜欢晚上出来活动",
+    "type": "preference",
+    "emotionalWeight": 0.71,
+    "strength": 0.73,
+    "recallCount": 17,
+    "date": "2026-07-21"
+  },
+  {
+    "fact": "小鱼不喜欢陌生的手伸进去",
+    "type": "preference",
+    "emotionalWeight": 0.76,
+    "strength": 0.49,
+    "recallCount": 25,
+    "date": "2026-08-31"
+  },
+  {
+    "fact": "小鱼喜欢丰年虾",
+    "type": "preference",
+    "emotionalWeight": 2.35,
+    "strength": 0.34,
+    "recallCount": 46,
+    "date": "2026-05-08"
+  },
+  {
+    "fact": "小鱼不喜欢冷水",
+    "type": "preference",
+    "emotionalWeight": 0.8,
+    "strength": 0.46,
+    "recallCount": 1,
+    "date": "2026-09-29"
+  },
+  {
+    "fact": "小鱼喜欢照镜子",
+    "type": "preference",
+    "emotionalWeight": 1.08,
+    "strength": 0.82,
+    "recallCount": 2,
+    "date": "2026-07-17"
+  },
+  {
+    "fact": "小鱼不喜欢被盯着看太久",
+    "type": "preference",
+    "emotionalWeight": 2.4,
+    "strength": 0.59,
+    "recallCount": 25,
+    "date": "2026-07-04"
+  },
+  {
+    "fact": "小鱼喜欢晒灯光",
+    "type": "preference",
+    "emotionalWeight": 1.23,
+    "strength": 0.99,
+    "recallCount": 42,
+    "date": "2026-10-03"
+  },
+  {
+    "fact": "小鱼不喜欢缸里有别的鱼抢食",
+    "type": "preference",
+    "emotionalWeight": 2.06,
+    "strength": 0.48,
+    "recallCount": 4,
+    "date": "2026-07-30"
+  },
+  {
+    "fact": "小鱼喜欢紫色的水草",
+    "type": "preference",
+    "emotionalWeight": 1.56,
+    "strength": 0.7,
+    "recallCount": 4,
+    "date": "2026-08-15"
+  },
+  {
+    "fact": "小鱼不喜欢过滤器直吹",
+    "type": "preference",
+    "emotionalWeight": 0.56,
+    "strength": 0.66,
+    "recallCount": 13,
+    "date": "2026-07-24"
+  },
+  {
+    "fact": "小鱼喜欢黄昏的时候游上来",
+    "type": "preference",
+    "emotionalWeight": 0.55,
+    "strength": 0.44,
+    "recallCount": 48,
+    "date": "2026-06-16"
+  },
+  {
+    "fact": "小鱼不喜欢吃沉底饲料",
+    "type": "preference",
+    "emotionalWeight": 0.65,
+    "strength": 0.34,
+    "recallCount": 13,
+    "date": "2026-09-27"
+  },
+  {
+    "fact": "小鱼喜欢新水的味道",
+    "type": "preference",
+    "emotionalWeight": 1.39,
+    "strength": 0.35,
+    "recallCount": 8,
+    "date": "2026-06-04"
+  },
+  {
+    "fact": "小鱼不喜欢缸壁有反光",
+    "type": "preference",
+    "emotionalWeight": 2.15,
+    "strength": 0.93,
+    "recallCount": 46,
+    "date": "2026-08-27"
+  },
+  {
+    "fact": "小鱼喜欢有盖子的安全感",
+    "type": "preference",
+    "emotionalWeight": 2.33,
+    "strength": 0.37,
+    "recallCount": 5,
+    "date": "2026-07-03"
+  },
+  {
+    "fact": "小鱼喜欢安静的环境",
+    "type": "preference",
+    "emotionalWeight": 2.34,
+    "strength": 0.51,
+    "recallCount": 12,
+    "date": "2026-07-14"
+  },
+  {
+    "fact": "小鱼上周白点病了，治好了",
+    "type": "episode",
+    "emotionalWeight": 0.58,
+    "strength": 0.66,
+    "recallCount": 41,
+    "date": "2026-06-09"
+  },
+  {
+    "fact": "小鱼有一次差点蹦出缸",
+    "type": "episode",
+    "emotionalWeight": 2.08,
+    "strength": 0.95,
+    "recallCount": 25,
+    "date": "2026-07-08"
+  },
+  {
+    "fact": "小鱼第一次吃活食",
+    "type": "episode",
+    "emotionalWeight": 1.8,
+    "strength": 0.46,
+    "recallCount": 38,
+    "date": "2026-05-12"
+  },
+  {
+    "fact": "小鱼今天意外地产了卵",
+    "type": "episode",
+    "emotionalWeight": 2.14,
+    "strength": 0.87,
+    "recallCount": 36,
+    "date": "2026-05-21"
+  },
+  {
+    "fact": "小鱼昨天被过滤器吸了一下",
+    "type": "episode",
+    "emotionalWeight": 1.17,
+    "strength": 0.54,
+    "recallCount": 18,
+    "date": "2026-10-22"
+  },
+  {
+    "fact": "小鱼今天学会了追手指",
+    "type": "episode",
+    "emotionalWeight": 0.87,
+    "strength": 0.92,
+    "recallCount": 14,
+    "date": "2026-09-24"
+  },
+  {
+    "fact": "小鱼第一次认识我",
+    "type": "episode",
+    "emotionalWeight": 0.96,
+    "strength": 0.65,
+    "recallCount": 2,
+    "date": "2026-09-05"
+  },
+  {
+    "fact": "小鱼今天好像听懂了我的话",
+    "type": "episode",
+    "emotionalWeight": 1.58,
+    "strength": 0.95,
+    "recallCount": 31,
+    "date": "2026-10-16"
+  },
+  {
+    "fact": "小鱼昨天突然不爱吃东西",
+    "type": "episode",
+    "emotionalWeight": 2.45,
+    "strength": 0.63,
+    "recallCount": 15,
+    "date": "2026-10-15"
+  },
+  {
+    "fact": "小鱼今天恢复了活力",
+    "type": "episode",
+    "emotionalWeight": 1.21,
+    "strength": 0.54,
+    "recallCount": 8,
+    "date": "2026-05-31"
+  },
+  {
+    "fact": "小鱼换了新环境第一天",
+    "type": "episode",
+    "emotionalWeight": 2.43,
+    "strength": 0.99,
+    "recallCount": 34,
+    "date": "2026-06-09"
+  },
+  {
+    "fact": "小鱼今天和我玩了追逐游戏",
+    "type": "episode",
+    "emotionalWeight": 0.54,
+    "strength": 0.56,
+    "recallCount": 14,
+    "date": "2026-06-18"
+  },
+  {
+    "fact": "小鱼昨天吐了饲料",
+    "type": "episode",
+    "emotionalWeight": 1.45,
+    "strength": 0.89,
+    "recallCount": 3,
+    "date": "2026-06-23"
+  },
+  {
+    "fact": "小鱼今天特别给面子地游过来",
+    "type": "episode",
+    "emotionalWeight": 1.3,
+    "strength": 0.76,
+    "recallCount": 29,
+    "date": "2026-05-17"
+  },
+  {
+    "fact": "小鱼第一次看到我笑",
+    "type": "episode",
+    "emotionalWeight": 2.32,
+    "strength": 0.7,
+    "recallCount": 17,
+    "date": "2026-09-07"
+  },
+  {
+    "fact": "小鱼今天好像在跟我说话",
+    "type": "episode",
+    "emotionalWeight": 0.56,
+    "strength": 0.81,
+    "recallCount": 22,
+    "date": "2026-07-17"
+  },
+  {
+    "fact": "小鱼昨天做了个梦（吐泡泡）",
+    "type": "episode",
+    "emotionalWeight": 1.94,
+    "strength": 0.33,
+    "recallCount": 24,
+    "date": "2026-05-02"
+  },
+  {
+    "fact": "小鱼今天状态满分",
+    "type": "episode",
+    "emotionalWeight": 1.06,
+    "strength": 0.87,
+    "recallCount": 20,
+    "date": "2026-09-06"
+  },
+  {
+    "fact": "小鱼昨天有点沉底",
+    "type": "episode",
+    "emotionalWeight": 2.27,
+    "strength": 0.74,
+    "recallCount": 29,
+    "date": "2026-07-27"
+  },
+  {
+    "fact": "小鱼今天活泼得像换了条鱼",
+    "type": "episode",
+    "emotionalWeight": 0.97,
+    "strength": 0.48,
+    "recallCount": 18,
+    "date": "2026-06-15"
+  }
+]
