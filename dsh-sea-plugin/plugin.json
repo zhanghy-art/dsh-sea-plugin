@@ -1,0 +1,30 @@
+{
+  "name": "sea-of-memory",
+  "displayName": "识海面版 (Sea of Memory)",
+  "version": "9.0.0",
+  "description": "DSH双层一生感架构的记忆可视化面板 - 中心光球式记忆图谱，支持激素仪表盘、节点拖拽、搜索过滤、自动刷新",
+  "author": {
+    "name": "zhanghy-art",
+    "url": "https://github.com/zhanghy-art"
+  },
+  "category": "visualization",
+  "tags": ["memory", "visualization", "neural", "emotion", "hormone"],
+  "homepage": "https://github.com/zhanghy-art/dsh-sea-plugin",
+  "repository": "https://github.com/zhanghy-art/dsh-sea-plugin.git",
+  "license": "MIT",
+  "requirements": {
+    "python": ">=3.8",
+    "dsh": ">=9.0"
+  },
+  "port": 8765,
+  "entry": {
+    "start": "sea/start.bat",
+    "install": "sea/install.bat"
+  },
+  "skills": [
+    {
+      "name": "sea-of-memory",
+      "path": "SKILL.md"
+    }
+  ]
+}
