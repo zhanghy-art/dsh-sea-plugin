@@ -1,0 +1,4 @@
+# 上下文哨兵自启：DSH 启动时拉起哨兵进程（幂等，已在跑就不重复拉；关掉 DSH、重启电脑都不影响它继续盯）
+- insert:
+    - id: ctx-sentinel
+      name: 'dsh-ctx-sentinel'

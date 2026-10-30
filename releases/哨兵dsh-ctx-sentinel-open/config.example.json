@@ -1,0 +1,86 @@
+{
+  "_说明": "复制为 sentinel-target.json 放到 DSH 配置目录（默认 ~/.dsh/sentinel-target.json）。改完保存，下一次轮询自动生效。以下划线开头的键只是注释，哨兵会忽略。",
+  "_sessionId": "auto = 自动盯当前最活跃的会话；也可以填死某个 session id",
+  "sessionId": "auto",
+  "_threshold": "全局默认阈值：上下文用量到这个比例时导出一份归档（0.98 = 98%）",
+  "threshold": 0.98,
+  "_pollMs": "轮询间隔，毫秒",
+  "pollMs": 15000,
+  "_deliverDir": "归档投递根目录。各分组会在这里建自己的子目录",
+  "deliverDir": "./archive",
+  "_memoryVault": "长期记忆仓库路径（可选）。留空则从插件 profile 的 cordis.patch.yml 里读 vaultPath",
+  "memoryVault": "",
+  "_fileName": "全局归档文件名模板，支持 {stamp} {title} {id}",
+  "fileName": "会话转写-{stamp}.md",
+  "keepHistory": true,
+  "notify": true,
+  "_scanAll": "true = 所有会话都盯；false = 只盯最近有消息的那个",
+  "scanAll": true,
+  "_groups": "分组投递：命中 match 的会话进自己的子目录，走自己的阈值与策略",
+  "groups": [
+    {
+      "name": "chat",
+      "_match": "任一字段命中即算命中该分组；留空数组表示该字段不参与匹配",
+      "match": {
+        "workspace": [
+          "qq-bridge"
+        ],
+        "cwd": [
+          "qq-bridge"
+        ],
+        "title": [
+          "QQ聊天",
+          "qq-chat"
+        ],
+        "sessionId": []
+      },
+      "dir": "chat",
+      "fileName": "chat-{title}-{stamp}.md",
+      "_threshold": "分组独立阈值，覆盖全局值",
+      "threshold": 0.9,
+      "enableScanAll": true,
+      "keepEvery": true,
+      "index": true,
+      "enabled": true,
+      "_chatOnly": "true = 只导出「对话」内容，丢掉工具调用、思考过程、系统提示词",
+      "chatOnly": true,
+      "_toMemory": "true = 归档的同时同步一份进长期记忆仓库",
+      "toMemory": true,
+      "_statePack": "true = 维护「随身状态包」（见 README 的「状态包」一节）",
+      "statePack": true,
+      "_dir": "相对 deliverDir 的子目录名；也可以直接写绝对路径"
+    }
+  ],
+  "reExportDelta": 0.01,
+  "minReExportMs": 1800000,
+  "nearWarn": [
+    0.9,
+    0.95
+  ],
+  "_转写": "归档正文的详略控制",
+  "includeReasoning": false,
+  "maxReasoningChars": 1200,
+  "maxToolArgsChars": 1200,
+  "maxToolResultChars": 2000,
+  "maxTotalChars": 6000000,
+  "includeSystemNotices": true,
+  "_statePack": "随身状态包的全局配置。只有分组开了 statePack:true 才会用到",
+  "statePack": {
+    "_botName": "机器人自己的显示名，会出现在对话记录与状态包标题里",
+    "botName": "AI",
+    "_ownerLabel": "对「对面那个人」的称呼，用在状态包的标题与小节名里",
+    "ownerLabel": "用户",
+    "_ownerScope": "记忆库里属于用户本人的 scope 标识。记忆条目按这个 scope 过滤",
+    "ownerScope": "private:123456789",
+    "_baseDir": "状态源文件的根目录。给了它就不用逐个写 sources，五个来源按默认相对路径拼",
+    "baseDir": "",
+    "_sources": "逐个指定状态来源文件；显式指定的优先级高于 baseDir",
+    "sources": {
+      "personaLayers": "",
+      "personaState": "",
+      "longmem": "",
+      "diary": "",
+      "letters": ""
+    }
+  }
+}

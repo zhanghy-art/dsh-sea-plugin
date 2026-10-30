@@ -1,0 +1,5 @@
+node_modules/
+archive/
+*.log
+.state-pack*.watermark.json
+sentinel-target.json

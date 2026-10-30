@@ -1,0 +1,16 @@
+{
+  "name": "dsh-ctx-sentinel",
+  "description": "DSH 上下文哨兵：会话接近上下文上限时自动归档转写，并持续维护可交接的「随身状态包」。一对话一文件，只追加不重写。",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT"
+}
